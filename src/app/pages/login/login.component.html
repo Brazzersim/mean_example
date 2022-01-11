@@ -1,0 +1,20 @@
+<form autocomplete="off" [formGroup]="form" (submit)="login()" class="d-flex justify-content-center flex-column mt-5 align-items-center">
+  <div class="row mt-5">
+    <div class="col-12">
+      <label for="username" class="form-label"><span class="text-dark fs-5">Username</span></label>
+      <input type="email" [ngStyle]="{'border-color': username.touched && username.hasError('required') ? 'rgba(255, 0, 0, 0.63)' : 'white'}" formControlName="username" class="text-black-50 form-control fs-6" id="username">
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <label for="password" class="form-label"><span class="text-dark fs-5">Password</span></label>
+      <input type="password" [ngStyle]="{'border-color': password.touched && password.hasError('required') ? 'rgba(255, 0, 0, 0.63)' : 'white'}" formControlName="password" class="text-black-50 form-control fs-6text-black-50 "text-black-50  id="password" />
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <button type="submit" class="btn btn-success">Enter</button>
+    </div>
+  </div>
+  <span [hidden]="!error" class="mt-3 fs-6 text-danger">Wrong username or password!</span>
+</form>

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="h3">{{txtTitle}}</div>
+  <div class="container-fluid mt-5">
+    <div class="col-11">
+      <form [formGroup]="form" (submit)="submit()" class="row g-3">
+        <div class="col-md-6">
+          <label for="inputName" class="form-label">Name</label>
+          <input type="email" formControlName="name" class="form-control" id="inputName">
+        </div>
+        <div class="col-md-6">
+          <label for="inputSurname" class="form-label">Surname</label>
+          <input type="password" formControlName="surname" class="form-control" id="inputSurname">
+        </div>
+        <div class="col-6">
+          <label for="inputEmail" class="form-label">E-mail</label>
+          <input type="email" formControlName="email" class="form-control" id="inputEmail" placeholder="user@example.com">
+        </div>
+        <div class="col-6">
+          <label for="inputPhone" class="form-label">Phone</label>
+          <input type="text" formControlName="phone" class="form-control" id="inputPhone">
+        </div>
+        <div class="col-6">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input type="text" formControlName="address" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="col-md-3">
+          <label for="inputCity" class="form-label">City</label>
+          <input type="text" formControlName="city" class="form-control" id="inputCity">
+        </div>
+        <div class="col-md-3">
+          <label for="inputZip" class="form-label">Zip</label>
+          <input type="text" formControlName="zip" class="form-control" id="inputZip">
+        </div>
+        <div class="col-12 mt-5">
+          <button type="button" class="btn btn-primary" (click)="back()">
+            <fa-icon class="pe-2" [icon]="faArrowLeft"></fa-icon>
+            Back
+          </button>
+          <button [hidden]="op == 'details'" type="submit" class="btn btn-success float-end">{{txtSubmit}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
