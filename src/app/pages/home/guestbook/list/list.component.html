@@ -6,9 +6,11 @@
         <button (click)="add()" type="button" class="btn btn-outline-success"><fa-icon class="pe-2" [icon]="faPlus"></fa-icon> Add</button>
       </div>
       <div class="col-5"></div>
-      <div class="d-flex col-4">
-        <input class="form-control me-2" type="search" placeholder="Name, Surname..." aria-label="Search">
-        <button class="btn btn-warning" type="submit">Search</button>
+      <div class="col-4">
+        <form [formGroup]="searchForm" class="d-flex" (submit)="search()">
+          <input formControlName="searchTxt" class="form-control me-2" type="search" placeholder="Name, Surname..." aria-label="Search">
+          <button class="btn btn-warning" type="submit">Search</button>
+        </form>
       </div>
     </div>
     <div class="row mt-4">
@@ -37,7 +39,7 @@
           </ng-container>
           <ng-template #noRows>
             <tr>
-              <td colspan="3">No results found</td>
+              <td colspan="4">No results found</td>
             </tr>
           </ng-template>
           </tbody>
