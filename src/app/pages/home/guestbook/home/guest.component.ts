@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../../../interfaces/user.interface";
 import {Router} from "@angular/router";
+import {HttpService} from '../../../../services/http.service';
 
 @Component({
   selector: 'guest-root',
@@ -11,16 +12,16 @@ export class GuestComponent implements OnInit {
   user: User;
 
   constructor(
-    private router: Router
+    private router: Router,
+    public service: HttpService
   ) {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   logout() {
-    localStorage.setItem('user', null);
-    this.router.navigate['login'];
+    this.service.user = null;
+    this.router.navigate(['login']);
   }
 }

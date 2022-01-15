@@ -1,10 +1,15 @@
 const bodyParser = require("body-parser");
 const express = require("express");
-const Users = require("./models/users.js");
+const _users = require("./models/users.js");
+const _guests = require("./models/guests.js");
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://:<password>@cluster0.iw1qr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://root:root@cluster0.iw1qr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-mongoose.connect(uri);
+mongoose.connect(uri).then(() => {
+  console.log('DB connected succesfully!');
+}).catch((error) => {
+  console.log('DB ERROR: ' + error);
+});
 
 const app = express();
 
@@ -24,31 +29,28 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/api/guest", (req, res, next) => {
-  const post = req.body;
-  console.log(post);
-  res.status(201).json({
-    message: 'Post added successfully'
-  });
+//USER
+app.post("/api/login", (req, res, next) => {
+  _users.login(req, res);
 });
 
-app.get("/api/guest", (req, res, next) => {
-  const posts = [
-    {
-      id: "fadf12421l",
-      title: "First server-side post",
-      content: "This is coming from the server"
-    },
-    {
-      id: "ksajflaj132",
-      title: "Second server-side post",
-      content: "This is coming from the server!"
-    }
-  ];
-  res.status(200).json({
-    message: "Posts fetched successfully!",
-    posts: posts
-  });
+
+//GUESTS
+app.post("/api/guest", (req, res, next) => {
+  _guests.createGuest(req, res);
 });
+app.get("/api/guest", (req, res, next) => {
+  _guests.getUserGuests(req, res);
+});
+app.get("/api/guest/:id", (req, res, next) => {
+  _guests.getGuest(req, res);
+});
+app.delete("/api/guest/:id", (req, res, next) => {
+  _guests.deleteGuest(req, res);
+});
+app.put("/api/guest/:id", (req, res, next) => {
+  _guests.updateGuest(req, res);
+});
+
 
 module.exports = app;

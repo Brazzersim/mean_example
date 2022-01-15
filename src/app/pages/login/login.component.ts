@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {HttpService} from '../../services/http.service';
 
 @Component({
   selector: 'login-root',
@@ -9,11 +10,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  error: boolean = false;
+  error: string = null;
 
   constructor(
-    private fb: FormBuilder,
-    private route: Router
+      private fb: FormBuilder,
+      private route: Router,
+      private service: HttpService
   ) {
     this.form = this.fb.group({
       'username': [null, Validators.required],
@@ -26,17 +28,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if(this.username.value != 'admin' || this.password.value != 'admin') {
-      console.log(this.username.value);
-      this.error = true;
-      return;
-    }
-    this.error = false;
-    localStorage.setItem('user', JSON.stringify({name: 'admin', email: 'admin@admin.com', guests: [
-        {name: 'ciccio', surname: 'pappalardo', email: 'pasticcio@email.it'},
-        {name: 'franco', surname: 'pappalardo', email: 'falegname@email.it'}
-      ]}));
-    this.route.navigate(['guestbook']);
+    this.service.login({username: this.username.value, password: this.password.value}).subscribe((data: any)=> {
+      this.service.user = data.user;
+      this.route.navigate(['guestbook']);
+      this.error = null;
+    }, error => {
+      this.error = error.error.message;
+    });
   }
 
   get username() {

@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import {LoginComponent} from "./pages/login/login.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HomeModule} from "./pages/home/home.module";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {HttpService} from './services/http.service';
+import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,9 +22,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     FormsModule,
     HomeModule,
-    FontAwesomeModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    HttpService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

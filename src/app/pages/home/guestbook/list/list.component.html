@@ -25,7 +25,7 @@
           </tr>
           </thead>
           <tbody>
-          <ng-container *ngIf="guests.length > 0; else noRows">
+          <ng-container *ngIf="guests?.length > 0; else noRows">
             <tr *ngFor="let guest of guests; index as i;">
               <td>{{guest.name}}</td>
               <td>{{guest.surname}}</td>
