@@ -1,27 +1,22 @@
-# Mean
+# Mean App Example
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
+The project's purpouse is to prove MEAN stack knowledge.
 
-## Development server
+## Angular Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Node.js Development server
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm run start:serve` for a live dev server. Requests will be routed on 3000 port by default.
 
-## Build
+## Use of the application
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+I created 3 different users to log in the application, usernames and passwords are respectively the following:
 
-## Running unit tests
+  - root / root
+  - user / password
+  - test / test
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Each one of these already have some stored guests. 
+Platform funcionalities are intuitive, i think there's no need of more explanation.
